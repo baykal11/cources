@@ -1,8 +1,12 @@
 package kg.megacom.cources.cources.sevices.impl;
 
+import kg.megacom.cources.cources.models.dao.CourseRepo;
 import kg.megacom.cources.cources.models.dao.RoleRepo;
+import kg.megacom.cources.cources.models.dao.TeacherRepo;
 import kg.megacom.cources.cources.models.dao.UserRepo;
+import kg.megacom.cources.cources.models.entities.Course;
 import kg.megacom.cources.cources.models.entities.Role;
+import kg.megacom.cources.cources.models.entities.Teacher;
 import kg.megacom.cources.cources.sevices.AdminService;
 import kg.megacom.cources.cources.models.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private RoleRepo roleRepo;
+
+    @Autowired
+    private TeacherRepo teacherRepo;
+
+    @Autowired
+    private CourseRepo courseRepo;
 
     @Override
     public User saveUser(User user) {
@@ -44,4 +54,25 @@ public class AdminServiceImpl implements AdminService {
     public Role saveRole(Role role) {
         return roleRepo.save(role);
     }
+
+    @Override
+    public Teacher saveTeacher(Teacher teacher) {
+        return teacherRepo.save(teacher);
+    }
+
+    @Override
+    public List<Teacher> getTeacherList() {
+        return teacherRepo.findAll();
+    }
+
+    @Override
+    public Course saveCourse(Course course) {
+        return courseRepo.save(course);
+    }
+
+    @Override
+    public List<Course> getCourseList() {
+        return courseRepo.findAll();
+    }
+
 }
